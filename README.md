@@ -11,4 +11,22 @@
 
 Logging designed to be used with lambda-monitor
 
-// TODO: Add readme
+## Install
+
+Install with [npm](https://www.npmjs.com/):
+
+    $ npm install --save lambda-monitor-logger
+
+## Usage
+
+<!-- eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies -->
+```js
+const logger = require('lambda-monitor-logger');
+
+logger.error('Keyboard not found. Press F1 to Resume');
+// => ERROR: Keyboard not found. Press F1 to Resume
+```
+
+This logger will simply log to console and prefix with the debug level.
+
+The available levels are: `debug`, `info`, `warning`, `error`, `critical`.
