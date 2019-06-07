@@ -12,6 +12,4 @@ module.exports = value => util.inspect(value, {
     }
     return str;
   }
-}).replace(/(:?)\s*\n\s*/g, (_, colon) => {
-  return colon ? ': ' : '';
-});
+}).replace(/(:?)\s*\n\s*/g, (_, colon) => (colon ? ': ' : ''));
