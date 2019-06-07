@@ -1,20 +1,15 @@
-const replacer = (key, value) => {
-  if (value instanceof Object && !Array.isArray(value)) {
-    return value;
-  }
-  if (typeof value === 'string') {
-    if (value.length > 128) {
-      return `${value.slice(0, 56)}...${value.slice(-56)}`;
+const util = require('util');
+
+const maxStringLength = 128;
+
+module.exports = value => util.inspect(value, {
+  compact: true,
+  maxArrayLength: 14,
+  depth: 16,
+  stylize: (str, type) => {
+    if (type === 'string' && str.length > maxStringLength) {
+      return `${str.slice(0, maxStringLength + 1)}...`;
     }
-    return value;
+    return str;
   }
-  if (Array.isArray(value) && value.length > 14) {
-    return [
-      ...value.slice(0, 7),
-      '...',
-      ...value.slice(-7)
-    ];
-  }
-  return value;
-};
-module.exports = value => JSON.stringify(value, replacer);
+}).replace(/\s*\n\s*/g, '');
