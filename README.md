@@ -21,10 +21,13 @@ Install with [npm](https://www.npmjs.com/):
 
 <!-- eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies -->
 ```js
-const logger = require('lambda-monitor-logger');
+const { logger, abbrev } = require('lambda-monitor-logger');
 
 logger.error('Keyboard not found. Press F1 to Resume');
 // => ERROR: Keyboard not found. Press F1 to Resume
+
+logger.error(abbrev('some really long text'));
+// => ERROR: some ... test
 ```
 
 This logger will simply log to console and prefix with the debug level.
